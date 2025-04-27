@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
+import time
 
 
-def test(browser):
+def test_has_add_to_cart_button(browser):
     try:
         browser.get("https://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/")
 
@@ -10,6 +11,5 @@ def test(browser):
         assert len(button) > 0, "Site has no button"
 
     finally:
+        time.sleep(5)
         browser.quit()
-
-
