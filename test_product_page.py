@@ -8,7 +8,8 @@ from .pages.product_page import PageObject
 
 
 @pytest.mark.need_review
-@pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"])
+@pytest.mark.parametrize('link',
+                         ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"])
 def test_guest_can_add_product_to_basket(browser, link):
     page = PageObject(browser, link)
     page.open()
@@ -63,6 +64,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     LoginPage(browser, page.browser.current_url).should_be_login_page()
 
 
+@pytest.mark.login_guest
 class TestUserAddToBasketFromProductPage:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):
@@ -72,7 +74,6 @@ class TestUserAddToBasketFromProductPage:
         registration_page = LoginPage(browser, page.browser.current_url)
         registration_page.register_new_user(f"{time()}@fakemail.com", "5p#DS:@3l23")
         registration_page.should_be_authorized_user()
-
 
     @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
