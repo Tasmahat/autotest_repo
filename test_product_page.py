@@ -1,5 +1,3 @@
-from datetime import time
-
 import pytest
 
 from .pages.login_page import LoginPage
@@ -72,7 +70,7 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         page.go_to_login_page()
         registration_page = LoginPage(browser, page.browser.current_url)
-        registration_page.register_new_user(f"superuser@fakemail.com", "5p#DS:@3l23")
+        registration_page.register_new_user(f"superuser@fakemail.com", "SuperSEcure34234passdfew")
         registration_page.should_be_authorized_user()
 
     @pytest.mark.need_review
